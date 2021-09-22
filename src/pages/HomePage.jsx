@@ -22,9 +22,20 @@ const HomePage = () => {
       <h1 style={{ margin: "10px 0px" }}>Top Headlines 💯</h1>
       {apiData.map((val) => {
         return (
-          <li key={val.publishedAt} className="headlines-list">
-            {val.title}
-          </li>
+          <div className="card" key={val.publishedAt}>
+            <img src={val.urlToImage} alt="Avatar" style={{ width: "100%" }} />
+            <div className="container">
+              <h4>
+                <b>{val.title}</b>
+              </h4>
+              <p>{val.description}</p>
+            </div>
+            <button>
+              <a href={val.url} target="_blank">
+                Read more
+              </a>
+            </button>
+          </div>
         );
       })}
     </>
