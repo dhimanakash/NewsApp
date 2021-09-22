@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./homepage.css";
 
 const HomePage = () => {
   const [apiData, setApiData] = useState([]);
@@ -18,9 +19,13 @@ const HomePage = () => {
 
   return (
     <>
-      <div>This is a HomePage 🏠</div>
+      <h1 style={{ margin: "10px 0px" }}>Top Headlines 💯</h1>
       {apiData.map((val) => {
-        return <li key={val.publishedAt}>{val.title}</li>;
+        return (
+          <li key={val.publishedAt} className="headlines-list">
+            {val.title}
+          </li>
+        );
       })}
     </>
   );
