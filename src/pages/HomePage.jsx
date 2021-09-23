@@ -4,9 +4,10 @@ import "./homepage.css";
 
 const HomePage = () => {
   const [apiData, setApiData] = useState([]);
+  const [pageNo, setPageNo] = useState(1);
   const getData = async () => {
     const response = await axios.get(
-      "https://newsapi.org/v2/top-headlines?country=in&apiKey=9ab2ae99801f4590842cbdd9c6b508c2"
+      `https://newsapi.org/v2/top-headlines?country=in&apiKey=9ab2ae99801f4590842cbdd9c6b508c2&pageSize=10&page=${pageNo}`
     );
     setApiData(response.data.articles);
     console.log(response.data.articles, "data");
@@ -16,6 +17,15 @@ const HomePage = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  const handlePrevClick = async () => {
+    console.log("prevClick");
+    setPageNo(pageNo - 1);
+  };
+  const handleNextClick = async () => {
+    console.log("nextClick");
+    setPageNo(pageNo + 1);
+  };
 
   return (
     <>
@@ -51,6 +61,14 @@ const HomePage = () => {
             </div>
           );
         })}
+      </div>
+      <div className="button-container">
+        <button className="button button5" onClick={handlePrevClick}>
+          &larr; Prev
+        </button>
+        <button className="button button5" onClick={handleNextClick}>
+          Next &rarr;
+        </button>
       </div>
     </>
   );
